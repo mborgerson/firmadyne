@@ -342,6 +342,13 @@ def process(infile, iid, arch, endianness=None, makeQemuCmd=False, outfile=None)
     else:
         print(qemuCommandLine)
 
+
+    if len(ifacesWithIps) < 1:
+        print("Warning: Failed to find any interfaces with an IP")
+        # Note: We should try to identify the WAN port and run a DHCP server on
+        # it to see if we can interface with the device from the external net.
+        exit(1)
+
     return success
 
 def archEnd(value):
